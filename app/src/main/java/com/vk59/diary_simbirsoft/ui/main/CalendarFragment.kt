@@ -6,18 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.DatePicker
 import com.applandeo.materialcalendarview.EventDay
+import com.applandeo.materialcalendarview.builders.DatePickerBuilder
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
+import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
 import com.vk59.diary_simbirsoft.R
 import com.vk59.diary_simbirsoft.databinding.CalendarFragmentBinding
+import com.vk59.diary_simbirsoft.ui.main.recycler_view.TodayRecyclerAdapter
 import java.util.*
+
 
 class CalendarFragment : Fragment() {
 
     companion object {
         fun newInstance() = CalendarFragment()
     }
+
+    private lateinit var adapter: TodayRecyclerAdapter
 
     private var events: List<EventDay>? = null
     private lateinit var calendarView: CalendarView
@@ -35,7 +44,7 @@ class CalendarFragment : Fragment() {
         binding = CalendarFragmentBinding.bind(view)
         calendarView = binding.calendarView
 
-        // TODO: Implement RecyclerView and Adapter.\
+        // TODO: Implement RecyclerView and Adapter.
         todayRecyclerView = binding.todayRecyclerView
         return binding.root
     }
@@ -49,6 +58,7 @@ class CalendarFragment : Fragment() {
         events = viewModel.events
 
         initCalendarView()
+        initRecyclerView()
     }
 
     private fun initCalendarView() {
@@ -62,6 +72,22 @@ class CalendarFragment : Fragment() {
         calendarView.setMaximumDate(max)
 
         calendarView.setEvents(events)
+
+        calendarView.setOnDayClickListener(listener)
     }
+
+    var listener = OnDayClickListener { event: EventDay ->
+        val c = event.calendar
+        viewModel.setCurrentDate(c)
+        adapter.setTasks(viewModel.currentTasks)
+    }
+
+    private fun initRecyclerView() {
+        todayRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = TodayRecyclerAdapter(requireContext())
+        adapter.setTasks(tasks = viewModel.currentTasks)
+        todayRecyclerView.adapter = adapter
+    }
+
 
 }

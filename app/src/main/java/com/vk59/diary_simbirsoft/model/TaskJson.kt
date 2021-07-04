@@ -2,7 +2,6 @@ package com.vk59.diary_simbirsoft.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class TaskJson (
     @SerializedName("id")

@@ -1,26 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="15 - 16"
-        />
+<?xml version="1.0" encoding="utf-8"?><!--TODO: Implement styles for TextViews-->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-<!--        TODO: Implement item sample for recycler view tasks.-->
-    <TextView
-        android:id="@+id/descriptionItem"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="15 - 16" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tasksThisHourRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
     </LinearLayout>
-
-</LinearLayout>
+</layout>
