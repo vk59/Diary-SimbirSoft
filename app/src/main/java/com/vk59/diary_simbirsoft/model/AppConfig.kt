@@ -10,4 +10,5 @@ object AppConfig {
 
     val dayInMillis = 86400000L
     val hourInMills = (dayInMillis / 24)
+    val taskDefaultDuration = (hourInMills * 1.5).toLong()
 }

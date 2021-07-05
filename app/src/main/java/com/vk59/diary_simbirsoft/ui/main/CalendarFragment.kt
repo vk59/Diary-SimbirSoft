@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.CalendarView
@@ -43,10 +44,13 @@ class CalendarFragment : Fragment() {
         val view = inflater.inflate(R.layout.calendar_fragment, container, false)
         binding = CalendarFragmentBinding.bind(view)
         calendarView = binding.calendarView
-
-        // TODO: Implement RecyclerView and Adapter.
         todayRecyclerView = binding.todayRecyclerView
+        binding.addButton.setOnClickListener { onAddListener() }
         return binding.root
+    }
+
+    private fun onAddListener() {
+        findNavController().navigate(R.id.action_calendarFragment_to_createFragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +58,8 @@ class CalendarFragment : Fragment() {
 
         // TODO: Implement ViewModel using LiveData<ArrayList<EventDay>>
         viewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
-        viewModel.getDataConfig()
+//        viewModel.getDataConfig()
+        viewModel.getData()
         events = viewModel.events
 
         initCalendarView()
@@ -63,10 +68,10 @@ class CalendarFragment : Fragment() {
 
     private fun initCalendarView() {
         val min = Calendar.getInstance()
-        min.add(Calendar.MONTH, -2)
+        min.add(Calendar.MONTH, -12)
 
         val max = Calendar.getInstance()
-        max.add(Calendar.MONTH, 2)
+        max.add(Calendar.MONTH, 12)
 
         calendarView.setMinimumDate(min)
         calendarView.setMaximumDate(max)

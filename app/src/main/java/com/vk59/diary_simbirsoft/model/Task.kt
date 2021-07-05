@@ -9,5 +9,16 @@ data class Task (
     var name: String,
     var description: String) {
 
-    constructor(task: TaskJson) : this(task.id, Date(task.dateStart.toLong() * 1000), Date(task.dateFinish.toLong() * 1000), task.name, task.description)
+    constructor(task: TaskJson) :
+            this(task.id, Date(task.dateStart.toLong() * 1000),
+                Date(task.dateFinish.toLong() * 1000),
+                task.name,
+                task.description)
+    constructor(task: TaskRealm) :
+            this(task.id!!,
+                Date(task.dateStart!!.toLong() * 1000),
+                Date(task.dateFinish!!.toLong() * 1000),
+                task.name!!,
+                task.description!!)
+
 }

@@ -1,22 +1,18 @@
 package com.vk59.diary_simbirsoft.ui.main
 
-import android.graphics.Bitmap
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.applandeo.materialcalendarview.EventDay
 import com.vk59.diary_simbirsoft.R
 import com.vk59.diary_simbirsoft.model.AppConfig
 import com.vk59.diary_simbirsoft.model.Task
 import com.vk59.diary_simbirsoft.model.TaskJson
-import java.time.LocalDate
+import com.vk59.diary_simbirsoft.repository.DataBase
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.time.hours
 
+// TODO: 05.07.2021 Delete all the Logs
 class CalendarViewModel() : ViewModel() {
     var events = arrayListOf<EventDay>()
     var tasks = arrayListOf<Task>()
@@ -30,7 +26,7 @@ class CalendarViewModel() : ViewModel() {
     init {
         val c = Calendar.getInstance()
         c.timeInMillis = c.timeInMillis - c.timeInMillis % AppConfig.dayInMillis
-        Log.d("CURRENT TIME: ", c.time.toString())
+//        Log.d("CURRENT TIME: ", c.time.toString())
         currentDate = MutableLiveData(c.time)
         currentDateStart = c.timeInMillis
         currentDateFinish = currentDateStart + AppConfig.dayInMillis
@@ -81,10 +77,20 @@ class CalendarViewModel() : ViewModel() {
             tasks.add(Task(t))
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = Task(t).dateStart.time
-            Log.d("DATE", calendar.time.toString())
+//            Log.d("DATE", calendar.time.toString())
             events.add(EventDay(calendar, R.drawable.icon_task))
         }
-        Log.d("VIEW MODEL", tasks.toString())
+//        Log.d("VIEW MODEL", tasks.toString())
+    }
+
+    fun getData() {
+        tasks = DataBase.getAllData()
+        events.clear()
+        tasks.forEach {
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = it.dateStart.time
+            events.add(EventDay(calendar, R.drawable.icon_task))
+        }
     }
 
     fun setCurrentDate(c: Calendar) {

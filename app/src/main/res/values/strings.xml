@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Diary-SimbirSoft</string>
+    <string name="fab_content_desc">Add new task</string>
+    <string name="add_task_button">Add Task</string>
+    <string name="date_start_title">Choose Date</string>
+    <string name="choose_time_title">Choose time</string>
+    <string name="task_name_title">Task name</string>
+    <string name="task_description">Task description</string>
 </resources>

@@ -23,5 +23,4 @@ data class TaskJson (
     @SerializedName("description")
     @Expose
     var description: String
-    ) {
-}
+    )
