@@ -1,9 +1,16 @@
 <resources>
-    <string name="app_name">Diary-SimbirSoft</string>
+    <string name="app_name">Calendar-SimbirSoft</string>
     <string name="fab_content_desc">Add new task</string>
     <string name="add_task_button">Add Task</string>
-    <string name="date_start_title">Choose Date</string>
-    <string name="choose_time_title">Choose time</string>
+    <string name="date_start_title">Choose date start</string>
+    <string name="choose_time_title">Choose time start</string>
+    <string name="date_finish_title">Choose date finish</string>
+    <string name="choose_time_finish_title">Choose time finish</string>
     <string name="task_name_title">Task name</string>
     <string name="task_description">Task description</string>
+    <string name="backButton">Back</string>
+    <string name="date_title">Date</string>
+    <string name="new_task_title">New task</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="choose_date_title">Choose date on calendar</string>
 </resources>

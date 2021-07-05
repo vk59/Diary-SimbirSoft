@@ -1,14 +1,18 @@
 package com.vk59.diary_simbirsoft.ui.main.recycler_view
 
+import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vk59.diary_simbirsoft.R
 import com.vk59.diary_simbirsoft.databinding.TaskItemBinding
 import com.vk59.diary_simbirsoft.model.Task
+
 
 class TodayRecyclerAdapter(private var context: Context) :
         RecyclerView.Adapter<TodayRecyclerAdapter.TodayViewHolder>() {
@@ -33,11 +37,10 @@ class TodayRecyclerAdapter(private var context: Context) :
         return holder
     }
 
-    // TODO: 03.07.2021 Implement observing changing in currentTasks and viewing on screen
     override fun onBindViewHolder(holder: TodayViewHolder, position: Int) {
-        holder.binding.time.text = "$position - ${(position + 1) % 24}"
+        holder.binding.time.text = "$position"
         tasks?.let {
-            val hourAdapter = HourRecyclerAdapter()
+            val hourAdapter = HourRecyclerAdapter(context)
             holder.binding.tasksThisHourRecycler.layoutManager = LinearLayoutManager(context)
             holder.binding.tasksThisHourRecycler.adapter = hourAdapter
             hourAdapter.setTasks(it[position])
@@ -50,7 +53,7 @@ class TodayRecyclerAdapter(private var context: Context) :
 
 
     class TodayViewHolder(
-            val binding: TaskItemBinding
+        val binding: TaskItemBinding
     ) :
             RecyclerView.ViewHolder(binding.root)
 }

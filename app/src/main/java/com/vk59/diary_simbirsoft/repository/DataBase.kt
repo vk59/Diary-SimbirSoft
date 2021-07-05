@@ -9,13 +9,9 @@ import kotlin.collections.ArrayList
 
 
 object DataBase {
-    private lateinit var realm: Realm
+    private var realm: Realm = Realm.getDefaultInstance()
     private val TAG = "DB"
     private var tasks = arrayListOf<Task>()
-
-    init {
-        realm = Realm.getDefaultInstance()
-    }
 
     fun saveData(name: String, dateStart: Long, dateFinish: Long, description: String) {
         realm.executeTransaction {
@@ -38,12 +34,6 @@ object DataBase {
     fun deleteAll() {
         realm.beginTransaction()
         realm.deleteAll()
-        realm.commitTransaction()
-    }
-
-    fun deleteTask() {
-        realm.beginTransaction()
-        // TODO: Delete Task implementation
         realm.commitTransaction()
     }
 

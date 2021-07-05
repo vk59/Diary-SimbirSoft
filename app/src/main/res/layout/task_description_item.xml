@@ -10,20 +10,24 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/task_background">
 
         <TextView
             android:id="@+id/titleItem"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{task.name}"
-            android:textSize="24sp" />
+            style="@style/TaskNameText"
+            />
 
         <TextView
             android:id="@+id/timeItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TaskNameText"
             android:text="15:00 - 15:30" />
     </LinearLayout>
 </layout>

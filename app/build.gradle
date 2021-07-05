@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'realm-android'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -38,7 +40,6 @@ android {
     dataBinding {
         enabled = true
     }
-
     testOptions {
         unitTests.returnDefaultValues = true
     }

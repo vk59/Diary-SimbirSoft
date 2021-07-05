@@ -1,6 +1,7 @@
 package com.vk59.diary_simbirsoft.ui.main
 
 import android.os.Bundle
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,15 +18,13 @@ import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
 import com.vk59.diary_simbirsoft.R
 import com.vk59.diary_simbirsoft.databinding.CalendarFragmentBinding
+import com.vk59.diary_simbirsoft.model.Task
 import com.vk59.diary_simbirsoft.ui.main.recycler_view.TodayRecyclerAdapter
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CalendarFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = CalendarFragment()
-    }
 
     private lateinit var adapter: TodayRecyclerAdapter
 
@@ -56,7 +55,6 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Implement ViewModel using LiveData<ArrayList<EventDay>>
         viewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
 //        viewModel.getDataConfig()
         viewModel.getData()
@@ -85,6 +83,8 @@ class CalendarFragment : Fragment() {
         val c = event.calendar
         viewModel.setCurrentDate(c)
         adapter.setTasks(viewModel.currentTasks)
+        binding.chosenDate.text =
+            "Chosen date: ${c.get(Calendar.DAY_OF_MONTH)}.${c.get(Calendar.MONTH)}.${c.get(Calendar.YEAR)}"
     }
 
     private fun initRecyclerView() {
@@ -93,6 +93,4 @@ class CalendarFragment : Fragment() {
         adapter.setTasks(tasks = viewModel.currentTasks)
         todayRecyclerView.adapter = adapter
     }
-
-
 }

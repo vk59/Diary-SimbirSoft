@@ -12,7 +12,6 @@ import com.vk59.diary_simbirsoft.repository.DataBase
 import java.util.*
 import kotlin.collections.ArrayList
 
-// TODO: 05.07.2021 Delete all the Logs
 class CalendarViewModel() : ViewModel() {
     var events = arrayListOf<EventDay>()
     var tasks = arrayListOf<Task>()
@@ -35,13 +34,12 @@ class CalendarViewModel() : ViewModel() {
         }
 
         currentDate.observeForever {
-            findTasksThatDay(it)
+            findTasksThatDay()
             Log.d("CURRENT TASKS", Date(currentDateStart).toString() +" " + currentTasks.toString())
         }
     }
 
-    private fun findTasksThatDay(date: Date) {
-        // TODO("Bad solution, it could be better and more optimized"): Implement using TreeSet
+    private fun findTasksThatDay() {
         Log.d("FIND TASK DAY", Date(currentDateStart).toString())
         var timeHourStart = currentDateStart
         var timeHourFinish = currentDateStart + AppConfig.hourInMills

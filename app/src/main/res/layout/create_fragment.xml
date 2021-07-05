@@ -4,8 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:paddingLeft="36dp"
+    android:paddingRight="36dp"
     tools:context=".ui.creating.CreateFragment">
+
+    <TextView
+        style="@style/MainTitlesTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/new_task_title"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.15" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -13,7 +35,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/guideline2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,19 +51,21 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputTaskName"
+                    android:inputType="textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--TODO: Write styles for TextViews-->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/black_30"
                 android:hint="@string/task_description">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputDescription"
+                    android:inputType="textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -64,9 +88,9 @@
                     android:id="@+id/dateText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/defaultColor"
-                    android:text="Today"
-                    android:textSize="30sp" />
+                    android:background="@drawable/edit_text_background"
+                    style="@style/EditDataText"
+                    android:text="Today"  />
 
                 <TextView
                     android:id="@+id/chooseTime"
@@ -78,9 +102,9 @@
                     android:id="@+id/timeText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/defaultColor"
-                    android:text="Today"
-                    android:textSize="30sp" />
+                    android:background="@drawable/edit_text_background"
+                    style="@style/EditDataText"
+                    android:text="Today"  />
 
             </LinearLayout>
 
@@ -96,30 +120,30 @@
                     android:id="@+id/chooseDateFinish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/date_start_title" />
+                    android:text="@string/date_finish_title" />
 
                 <TextView
                     android:id="@+id/dateTextFinish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/defaultColor"
-                    android:text="Today"
-                    android:textSize="30sp" />
+                    android:background="@drawable/edit_text_background"
+                    style="@style/EditDataText"
+                    android:text="Today"  />
 
 
                 <TextView
                     android:id="@+id/chooseTimeFinish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/choose_time_title" />
+                    android:text="@string/choose_time_finish_title" />
 
                 <TextView
                     android:id="@+id/timeTextFinish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/defaultColor"
-                    android:text="Today"
-                    android:textSize="30sp" />
+                    android:background="@drawable/edit_text_background"
+                    style="@style/EditDataText"
+                    android:text="Today" />
 
             </LinearLayout>
         </LinearLayout>
